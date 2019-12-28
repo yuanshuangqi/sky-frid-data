@@ -1,0 +1,27 @@
+server:
+  port: 8085
+spring:
+  profiles: test
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/nssol_frid?serverTimezone=UTC
+    username: root
+    password: 123
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+rsa:
+  key:
+    pubKeyFile: D:\key\sky_boot_rsa.pub
+    priKeyFile: D:\key\sky_boot_rsa

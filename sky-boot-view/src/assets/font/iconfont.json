@@ -1,0 +1,58 @@
+{
+  "id": "1372727",
+  "name": "sky",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1393805",
+      "name": "user_role",
+      "font_class": "user_role",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "5173361",
+      "name": "橡皮擦",
+      "font_class": "xiangpica",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "5308134",
+      "name": "橡皮擦",
+      "font_class": "xiangpica1",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "5524662",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7605132",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "7876854",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "8776873",
+      "name": "setting",
+      "font_class": "icon-test",
+      "unicode": "e63f",
+      "unicode_decimal": 58943
+    }
+  ]
+}

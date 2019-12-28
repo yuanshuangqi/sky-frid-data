@@ -1,0 +1,14 @@
+
+/*全局样式*/
+html, body, #app {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.page-header-btn {
+    text-align: center;
+    vertical-align: middle;
+}
+.page-footer {
+    margin: 20px 20px;
+}
