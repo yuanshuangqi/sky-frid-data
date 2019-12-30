@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 public class UserRoleAssignVo implements Serializable {
     @ApiModelProperty(value = "用户ID")
-    private Long id;
+    private String id;
     @ApiModelProperty(value = "用户所分配的角色ID集合")
     private Long[] roleIds;
 }

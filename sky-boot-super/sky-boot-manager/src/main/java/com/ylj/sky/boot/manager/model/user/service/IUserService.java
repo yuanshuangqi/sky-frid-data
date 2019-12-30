@@ -24,7 +24,7 @@ public interface IUserService {
 
     R getUserData(UserSearch userSearch);
 
-    R delUserById(Long id);
+    R delUserByUserId(String id);
 
     R userRoleAssign(UserRoleAssignVo roleAssignVo);
 

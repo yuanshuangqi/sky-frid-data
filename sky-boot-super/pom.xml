@@ -26,7 +26,6 @@
         <module>sky-boot-common</module>
         <module>sky-boot-manager</module>
         <module>sky-boot-generator</module>
-        <module>frid-data</module>
     </modules>
     <licenses>
         <license>

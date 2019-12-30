@@ -6,6 +6,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.ylj.sky.boot.common.constants.ResultCodeEnum;
 import com.ylj.sky.boot.common.vo.R;
 import com.ylj.sky.boot.manager.factory.PageFactory;
+import com.ylj.sky.boot.manager.frid.dao.TestDao;
 import com.ylj.sky.boot.manager.model.dept.entity.Dept;
 import com.ylj.sky.boot.manager.model.dept.repository.DeptRepository;
 import com.ylj.sky.boot.manager.model.menu.entity.Menu;
@@ -22,15 +23,20 @@ import com.ylj.sky.boot.manager.security.entity.SecurityUser;
 import com.ylj.sky.boot.manager.security.factory.SecurityFactory;
 import com.ylj.sky.boot.manager.util.menu.MenuUtil;
 import com.ylj.sky.boot.manager.util.user.UserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements IUserService {
+    @Autowired
+    TestDao testDao;
     @Resource
     private UserRepository userRepository;
     @Resource
@@ -39,6 +45,8 @@ public class UserServiceImpl implements IUserService {
     private DeptRepository deptRepository;
     @Resource
     private JPAQueryFactory queryFactory;
+    @Resource
+    private EntityManager entityManager;
     @Override
     public R addUser(User user) {
         user.setPassword(UserUtil.getEncryptPassword());
@@ -48,13 +56,16 @@ public class UserServiceImpl implements IUserService {
         }else {
             user.setDept(null);
         }
+        user.setId(UserUtil.getUUID());
         userRepository.save(user);
         return R.setResult(ResultCodeEnum.ADD_SUCCESS);
     }
 
     @Override
     public R editUser(User user) {
-        User one = userRepository.getOne(user.getId());
+
+//       User one = userRepository..getOne(user.getId());
+        User one = userRepository.findByIdEndingWith(user.getId());
         if(CollUtil.isEmpty(user.getRoles())){
             user.setRoles(one.getRoles());
         }
@@ -66,7 +77,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public R userRoleAssign(UserRoleAssignVo roleAssignVo) {
-        Long userId = roleAssignVo.getId();
+        String userId = roleAssignVo.getId();
         Optional<User> userOptional = userRepository.findById(userId);
         if(userOptional.isPresent()){
             User user = userOptional.get();
@@ -85,7 +96,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @Transactional
-    public R delUserById(Long id) {
+    public R delUserByUserId(String id) {
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()){
             List<Role> roles = userOptional.get().getRoles();
@@ -112,6 +123,7 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public R getUserInfoByUsername(String username) {
+        int result = testDao.testSelect();
         User user = userRepository.findByAccountEndingWith(username);
         //密码重置为null
         user.setPassword(null);
@@ -126,6 +138,8 @@ public class UserServiceImpl implements IUserService {
         //递归封装子菜单
         for (Menu parentMenu : parentMenus) {
             //此方法为加载用户所具有的菜单权限，故不能加载按钮权限
+            Menu menu1 = new Menu();
+            menu1.setMenuName(result+"");
             parentMenu.setChildren(MenuUtil.getChildrenNoBtn(parentMenu,menus));
         }
         user.setTreeMenus(parentMenus);

@@ -5,6 +5,7 @@ import com.ylj.sky.boot.manager.model.user.service.IUserService;
 import com.ylj.sky.boot.manager.security.filter.JwtLoginFilter;
 import com.ylj.sky.boot.manager.security.filter.JwtVerifyFilter;
 import com.ylj.sky.boot.manager.security.service.SecurityServiceImpl;
+import com.ylj.sky.boot.manager.util.user.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)
@@ -37,13 +41,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 设置UserDetailsService
                 .userDetailsService(this.userDetailsService)
                 // 使用BCrypt进行密码的hash
-                .passwordEncoder(passwordEncoder());
+                .passwordEncoder(new PasswordEncoder(){
+                    public String encode(CharSequence rawPassword) {
+                        return UserUtil.getEncryptPassword((String)rawPassword);
+                     }
+                     public boolean matches(CharSequence rawPassword, String encodedPassword) {//rawPassword用户输入的，encodedPassword数据库查出来的
+                        return encodedPassword.equals(UserUtil.getEncryptPassword((String)rawPassword));
+                    }}
+                );
     }
     // 装载BCrypt密码编码器
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -62,4 +73,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //禁用缓存
         httpSecurity.headers().cacheControl();
     }
+
 }

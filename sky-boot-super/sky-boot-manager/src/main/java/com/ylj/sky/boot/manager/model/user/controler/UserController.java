@@ -30,8 +30,8 @@ public class UserController {
     @DeleteMapping(value = "/id/{id}")
     @ApiOperation("删除用户API")
     @PreAuthorize("hasRole('ROLE_SUPER_ADMIN') && hasAuthority('user_mgr_del') ")
-    public R delUserById(@PathVariable("id")Long id){
-        return userService.delUserById(id);
+    public R delUserById(@PathVariable("id")String id){
+        return userService.delUserByUserId(id);
     }
 
     @PutMapping(value = "/edit")

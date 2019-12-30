@@ -4,9 +4,9 @@ spring:
   profiles: test
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/nssol_frid?serverTimezone=UTC
-    username: root
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=NSSOL_RFID
+    username: sa
     password: 123
     hikari:
       minimum-idle: 5
@@ -21,7 +21,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+    database-platform: org.hibernate.dialect.SQLServerDialect
 rsa:
   key:
     pubKeyFile: D:\key\sky_boot_rsa.pub
     priKeyFile: D:\key\sky_boot_rsa
+mybatis:
+  mapper-locations: classpath*:dao/*.xml

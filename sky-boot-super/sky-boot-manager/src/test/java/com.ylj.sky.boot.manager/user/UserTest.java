@@ -33,7 +33,7 @@ public class UserTest {
     public void userAdd(){
         User user = new User();
         user.setAccount("kenan");
-        user.setCname("柯南");
+//        user.setCname("柯南");
         Role role =new Role();
         role.setRoleCode("ROLE_SUPER_ADMIN");
         role.setRoleName("超级管理员");

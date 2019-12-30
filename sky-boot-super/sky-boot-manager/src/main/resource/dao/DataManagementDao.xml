@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ylj.sky.boot.manager.frid.dao.DataManagementDao">
+
+    <select id="getTaggingTotal"  resultType="int">
+        select sum(ScanNum) from t_tagging
+    </select>
+
+    <select id="getBaggingTotal"  resultType="int">
+        select sum(ScanNum) from t_bagging
+    </select>
+
+    <select id="getMetalCheckTotal"  resultType="int">
+        select sum(ScanNum) from T_Metalcheck
+    </select>
+
+</mapper>

@@ -29,7 +29,7 @@ public class SecurityFactory {
         SecurityUser securityUser = new SecurityUser();
         securityUser.setUsername(user.getAccount());
         securityUser.setPassword(user.getPassword());
-        securityUser.setEmail(user.getEmail());
+//        securityUser.setEmail(user.getEmail());
         securityUser.setPhone(user.getPhone());
         List<Role> roles = user.getRoles();
         for (Role role : roles) {

@@ -1,13 +1,13 @@
 server:
-  port: 8080
+  port: 8085
 spring:
   profiles: prod
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sky-boot?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/nssol-frid?serverTimezone=UTC
     username: root
-    password: asd123
+    password: 123
     hikari:
       minimum-idle: 5
       idle-timeout: 600000
@@ -21,3 +21,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: false
+rsa:
+  key:
+    pubKeyFile: D:\key\sky_boot_rsa.pub
+    priKeyFile: D:\key\sky_boot_rsa

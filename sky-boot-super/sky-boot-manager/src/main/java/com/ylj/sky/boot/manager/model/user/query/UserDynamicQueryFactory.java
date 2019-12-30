@@ -19,21 +19,19 @@ public class UserDynamicQueryFactory {
         if(StrUtil.isNotBlank(userSearch.getAccount())){
             booleanBuilder.and(qUser.account.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getAccount())));
         }
-        if(StrUtil.isNotBlank(userSearch.getCname())){
-            booleanBuilder.and(qUser.cname.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getCname())));
-        }
-        if(StrUtil.isNotBlank(userSearch.getEname())){
-            booleanBuilder.and(qUser.ename.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getEname())));
-        }
-        if(StrUtil.isNotBlank(userSearch.getEmail())){
-            booleanBuilder.and(qUser.email.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getEmail())));
-        }
-        if(StrUtil.isNotBlank(userSearch.getPhone())){
-            booleanBuilder.and(qUser.phone.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getPhone())));
-        }
-        if(StrUtil.isNotBlank(userSearch.getAddress())){
-            booleanBuilder.and(qUser.address.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getAddress())));
-        }
+//        if(StrUtil.isNotBlank(userSearch.getCname())){
+//            booleanBuilder.and(qUser.cname.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getCname())));
+//        }
+//        if(StrUtil.isNotBlank(userSearch.getEname())){
+//            booleanBuilder.and(qUser.ename.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getEname())));
+//        }
+//        if(StrUtil.isNotBlank(userSearch.getEmail())){
+//            booleanBuilder.and(qUser.email.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getEmail())));
+//        }
+//        if(StrUtil.isNotBlank(userSearch.getPhone())){
+//            booleanBuilder.and(qUser.phone.likeIgnoreCase(SkyBootUtil.getFuzzyQuery(userSearch.getPhone())));
+//        }
+
         if(userSearch.getRoleId() != null){
             booleanBuilder.and(qUser.roles.any().id.eq(userSearch.getRoleId()));
         }
