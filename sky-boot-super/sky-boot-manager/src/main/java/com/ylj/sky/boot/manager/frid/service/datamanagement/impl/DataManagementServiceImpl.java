@@ -1,9 +1,12 @@
 package com.ylj.sky.boot.manager.frid.service.datamanagement.impl;
 
+import com.ylj.sky.boot.manager.frid.controller.datamanagement.ProductionRequest;
 import com.ylj.sky.boot.manager.frid.dao.DataManagementDao;
 import com.ylj.sky.boot.manager.frid.model.FridDataInfo;
+import com.ylj.sky.boot.manager.frid.model.ProductionInfo;
 import com.ylj.sky.boot.manager.frid.service.datamanagement.DataManagementService;
 import com.ylj.sky.boot.manager.frid.service.datamanagement.FridDataOutput;
+import com.ylj.sky.boot.manager.frid.service.datamanagement.ProductionOutput;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,7 +29,7 @@ public class DataManagementServiceImpl implements DataManagementService{
         baggingInfo.setProcessId("002");
         baggingInfo.setProcessName("包装");
         baggingInfo.setTotalCount(dataManagementDao.getBaggingTotal());
-        fridDataList.add(taggingInfo);
+        fridDataList.add(baggingInfo);
         FridDataInfo metalCheckTotal = new FridDataInfo();
         metalCheckTotal.setProcessId("003");
         metalCheckTotal.setProcessName("检针");
@@ -35,5 +38,12 @@ public class DataManagementServiceImpl implements DataManagementService{
         FridDataOutput fridDataOutput = new FridDataOutput();
         fridDataOutput.setFridDataInfoList(fridDataList);
         return fridDataOutput;
+    }
+    /**get设备产量*/
+    public ProductionOutput getProduction(ProductionRequest productionRequest){
+        List<ProductionInfo> productionInfos = dataManagementDao.getProduction(productionRequest);
+        ProductionOutput productionOutput = new ProductionOutput();
+        productionOutput.setProductionInfoList(productionInfos);
+        return productionOutput;
     }
 }
