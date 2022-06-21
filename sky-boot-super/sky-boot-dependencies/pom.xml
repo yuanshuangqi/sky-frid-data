@@ -11,7 +11,7 @@
         <swagger.version>2.9.2</swagger.version>
         <lombok.version>1.18.10</lombok.version>
         <hutool.version>4.6.1</hutool.version>
-        <mysql.version>8.0.18</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <querydsl.version>4.2.2</querydsl.version>
         <p6spy.version>3.8.6</p6spy.version>
         <jjwt.api.version>0.10.7</jjwt.api.version>
